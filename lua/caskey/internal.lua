@@ -85,10 +85,10 @@ local opt_keys = {
 ---@param parent_modes? Modes
 ---@return Modes
 local function mk_modes(node, parent_modes)
-  return vim.tbl_flatten {
+  return vim.iter{
     lib.coalesce { node.mode, parent_modes, {} },
     lib.coalesce { node.mode_extend, {} },
-  }
+  }:flatten():totable()
 end
 
 ---@param node any
